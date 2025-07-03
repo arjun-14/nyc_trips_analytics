@@ -5,7 +5,8 @@ Load Type:    Full Load
 
 Description:
   Loads raw 2024 NYC taxi trip data from Google Cloud Storage into BigQuery bronze
-  tables via temporary external tables. Supports Yellow, Green, FHV, and HVFHV data.
+  tables via temporary external tables. Supports Yellow, Green, FHV, HVFHV and 
+  lookup data.
 
 Steps:
   - Generate run_id and log START
@@ -34,6 +35,7 @@ BEGIN
   TRUNCATE TABLE `nyc-trips-analytics.bronze.green_taxi_trips`;
   TRUNCATE TABLE `nyc-trips-analytics.bronze.for_hire_vehicle_trips`;
   TRUNCATE TABLE `nyc-trips-analytics.bronze.high_volume_for_hire_vehicle_trips`;
+  TRUNCATE TABLE `nyc-trips-analytics.bronze.taxi_zone_lookup`;
 
   -- Load Yellow Taxi data
   CREATE OR REPLACE EXTERNAL TABLE `nyc-trips-analytics.bronze.ext_yellow_taxi_trips`
@@ -149,11 +151,28 @@ BEGIN
     wav_match_flag 
   FROM `nyc-trips-analytics.bronze.ext_high_volume_for_hire_vehicle_trips`;
 
+  -- Load lookup table
+  CREATE OR REPLACE EXTERNAL TABLE `nyc-trips-analytics.bronze.ext_taxi_zone_lookup`
+  OPTIONS (
+    format = 'CSV',
+    uris = ['gs://nyc_trips_records/taxi_zone_lookup/taxi_zone_lookup.csv']
+  );
+
+  INSERT INTO `nyc-trips-analytics.bronze.taxi_zone_lookup`
+  SELECT
+    LocationID,
+    Borough,
+    Zone,
+    service_zone
+  FROM
+    `nyc-trips-analytics.bronze.ext_taxi_zone_lookup`;
+  
   -- Clean up external tables
   DROP EXTERNAL TABLE `nyc-trips-analytics.bronze.ext_yellow_taxi_trips`;
   DROP EXTERNAL TABLE `nyc-trips-analytics.bronze.ext_green_taxi_trips`;
   DROP EXTERNAL TABLE `nyc-trips-analytics.bronze.ext_for_hire_vehicle_trips`;
   DROP EXTERNAL TABLE `nyc-trips-analytics.bronze.ext_high_volume_for_hire_vehicle_trips`;
+  DROP EXTERNAL TABLE `nyc-trips-analytics.bronze.ext_taxi_zone_lookup`;
 
   -- Log success
   INSERT INTO `nyc-trips-analytics.logs.bronze_refresh_logs`
@@ -161,7 +180,7 @@ BEGIN
 
   EXCEPTION WHEN ERROR THEN
     BEGIN
-      -- Getting run_id
+      -- getting run_id
       DECLARE run_id STRING;
       SET run_id = (SELECT MAX(run_id) FROM `nyc-trips-analytics.logs.bronze_refresh_logs`);
 
