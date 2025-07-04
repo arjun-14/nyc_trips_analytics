@@ -4,6 +4,8 @@
 -- Table: green_taxi_trips
 -- Source URL: https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page
 -- Description: This table stores raw trip-level data for green taxis in NYC for the year 2024.
+-- Version: 1.0 
+-- Last Modified: 2025-06-27
 */
 
 CREATE OR REPLACE TABLE `nyc-trips-analytics.bronze.green_taxi_trips`

@@ -4,6 +4,8 @@
 -- Table: high_volume_for_hire_vehicle_trips
 -- Source URL: https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page
 -- Description: This table stores raw trip-level data for high volume for-hire vehicles (e.g., Uber, Lyft) in NYC for the year 2024.
+-- Version: 1.0 
+-- Last Modified: 2025-06-27
 */
 
 CREATE OR REPLACE TABLE `nyc-trips-analytics.bronze.high_volume_for_hire_vehicle_trips`

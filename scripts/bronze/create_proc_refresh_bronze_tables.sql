@@ -18,6 +18,9 @@ Steps:
 
 Usage:
   CALL `nyc-trips-analytics.bronze.refresh_bronze_tables`();
+
+Version: 1.0 
+Last Modified: 2025-06-28
 ----------------------------------------------------------------------------------
 */
 
@@ -180,7 +183,7 @@ BEGIN
 
   EXCEPTION WHEN ERROR THEN
     BEGIN
-      -- getting run_id
+      -- Getting run_id
       DECLARE run_id STRING;
       SET run_id = (SELECT MAX(run_id) FROM `nyc-trips-analytics.logs.bronze_refresh_logs`);
 
