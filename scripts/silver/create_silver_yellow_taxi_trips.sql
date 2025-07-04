@@ -107,4 +107,4 @@ SELECT
   update_timestamp
 FROM
   yellow_taxi
-QUALIFY ROW_NUMBER() OVER(PARTITION BY trip_id) = 1
+QUALIFY ROW_NUMBER() OVER(PARTITION BY trip_id) = 1;
