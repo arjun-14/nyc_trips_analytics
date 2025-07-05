@@ -1,5 +1,5 @@
 /*
--- Script: create_yellow_taxi_trips.sql
+-- Script: create_bronze_yellow_taxi_trips.sql
 -- Dataset: bronze
 -- Table: yellow_taxi_trips
 -- Source URL: https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page

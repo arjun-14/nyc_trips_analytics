@@ -1,5 +1,5 @@
 /*
--- Script: create_taxi_zone_lookup.sql
+-- Script: create_bronze_taxi_zone_lookup.sql
 -- Dataset: bronze
 -- Table: taxi_zone_lookup
 -- Source URL: https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page

@@ -1,5 +1,5 @@
 /*
--- Script: create_high_volume_for_hire_vehicle_trips.sql
+-- Script: create_bronze_high_volume_for_hire_vehicle_trips.sql
 -- Dataset: bronze
 -- Table: high_volume_for_hire_vehicle_trips
 -- Source URL: https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page
