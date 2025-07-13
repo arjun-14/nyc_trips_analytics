@@ -1,5 +1,5 @@
 /*
--- Script: create_payment_dim.sql
+-- Script: create_gold_payment_dim.sql
 -- Dataset: gold
 -- Table: payment_dim
 -- Description: This dimension table maps numeric payment type codes to human-readable descriptions for NYC taxi trips.

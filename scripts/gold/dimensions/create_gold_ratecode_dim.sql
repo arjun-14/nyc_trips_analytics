@@ -1,5 +1,5 @@
 /*
--- Script: create_ratecode_dim.sql
+-- Script: create_gold_ratecode_dim.sql
 -- Dataset: gold
 -- Table: ratecode_dim
 -- Description: This dimension table provides descriptive mappings for rate codes used in NYC taxi trips, 
