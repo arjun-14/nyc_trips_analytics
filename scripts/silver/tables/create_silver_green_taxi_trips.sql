@@ -19,7 +19,8 @@ SELECT
     CAST(lpep_dropoff_datetime AS STRING), '_',
     CAST(pulocation_id AS STRING), '_',
     CAST(dolocation_id AS STRING), '_',
-    CAST(total_amount AS STRING)
+    CAST(total_amount AS STRING), '_',
+    'green taxi'
   ))) AS trip_id,
   vendor_id,
   lpep_pickup_datetime,

@@ -19,7 +19,8 @@ WITH yellow_taxi AS (
       CAST(tpep_dropoff_datetime AS STRING), '_',
       CAST(pulocation_id AS STRING), '_',
       CAST(dolocation_id AS STRING), '_',
-      CAST(total_amount AS STRING)
+      CAST(total_amount AS STRING), '_',
+      'yellow taxi'
     ))) AS trip_id,
     vendor_id,
     tpep_pickup_datetime,

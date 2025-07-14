@@ -19,7 +19,8 @@ WITH high_volume_for_hire_vehicle AS(
       CAST(pickup_datetime AS STRING), '_',
       CAST(dropoff_datetime AS STRING), '_',
       CAST(pulocation_id AS STRING), '_',
-      CAST(dolocation_id AS STRING)
+      CAST(dolocation_id AS STRING), '_',
+      'high volume for hire vehicle'
     ))) AS trip_id,
     hvfhs_license_num,
     dispatching_base_num,

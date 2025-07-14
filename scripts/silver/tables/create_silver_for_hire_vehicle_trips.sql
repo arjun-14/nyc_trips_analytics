@@ -16,7 +16,8 @@ SELECT
   TO_HEX(SHA256(CONCAT(
       CAST(dispatching_base_num AS STRING), '_',
       CAST(pickup_datetime AS STRING), '_',
-      CAST(dropoff_datetime AS STRING)
+      CAST(dropoff_datetime AS STRING), '_',
+      'for hire vehicle'
     ))) AS trip_id,
   dispatching_base_num,
   pickup_datetime,
