@@ -6,8 +6,10 @@
 -- Description: This table stores cleansed and enriched trip-level data for yellow taxis in NYC for the year 2024.
 --              Includes derived fields such as trip duration, time-of-day classification, tip percentage,
 --              and data quality flags for passenger count, fare amount, and trip duration.
--- Version: 1.0 
--- Last Modified: 2025-07-04
+--
+-- Version      Last Modified             Changes 
+-- 1.0          2025-07-04                Initial creation of the table with basic fields and derived columns.
+-- 1.1          2025-07-14                Update the primary key to include trip type
 */
 
 CREATE OR REPLACE TABLE `nyc-trips-analytics.silver.yellow_taxi_trips` AS

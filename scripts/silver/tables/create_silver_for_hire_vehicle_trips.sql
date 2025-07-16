@@ -6,8 +6,10 @@
 -- Description: This table stores cleansed and enriched trip-level data for for-hire vehicles in NYC for the year 2024.
 --              Includes derived fields such as trip duration, time-of-day classification
 --              and data quality flags for trip duration.
--- Version: 1.0 
--- Last Modified: 2025-07-05
+--
+-- Version      Last Modified             Changes 
+-- 1.0          2025-07-05                Initial creation of the table with basic fields and derived columns.
+-- 1.1          2025-07-14                Update the primary key to include trip type
 */
 
 CREATE OR REPLACE TABLE `nyc-trips-analytics.silver.for_hire_vehicle_trips` AS

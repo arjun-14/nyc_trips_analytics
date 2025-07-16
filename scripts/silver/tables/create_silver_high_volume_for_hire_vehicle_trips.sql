@@ -7,8 +7,11 @@
 --              (e.g., Uber, Lyft) in NYC for the year 2024.
 --              Includes derived fields such as total amount, fare per mile, trip duration, time-of-day 
 --              classification, tip percentage and data quality flags for fare amount and trip duration.          
--- Version: 1.0 
--- Last Modified: 2025-07-04
+--
+-- Version      Last Modified             Changes 
+-- 1.0          2025-07-04                Initial creation of the table with basic fields and derived columns.
+-- 1.1          2025-07-14                Update the primary key to include trip type
+-- 1.2          2025-07-15                Remove redundant column trip_duration_seconds
 */
 
 CREATE OR REPLACE TABLE `nyc-trips-analytics.silver.high_volume_for_hire_vehicle_trips` AS
@@ -53,7 +56,6 @@ WITH high_volume_for_hire_vehicle AS(
       WHEN trip_miles > 0 THEN ROUND(base_passenger_fare / trip_miles, 2)
       ELSE NULL
     END AS fare_per_mile,
-    TIMESTAMP_DIFF(dropoff_datetime, pickup_datetime, SECOND)  AS trip_duration_seconds, 
     CASE 
       WHEN EXTRACT(HOUR FROM pickup_datetime) BETWEEN 6 AND 18 THEN 'Day'
       ELSE 'Night'
