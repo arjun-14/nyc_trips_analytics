@@ -3,11 +3,11 @@
 -- Dataset: gold
 -- Table: trips_fact
 -- Description: This fact table consolidates cleaned and enriched trip-level data across yellow taxis, green taxis, 
-                and high-volume for-hire vehicles in NYC for the year 2024. It includes relevant metrics for revenue, 
-                trip duration, fare components, and links to corresponding dimension tables.
+--              and high-volume for-hire vehicles in NYC for the year 2024. It includes relevant metrics for revenue, 
+--              trip duration, fare components, and links to corresponding dimension tables.
 -- Primary Key: trip_id
 -- Related Dimensions: date_dim, location_dim, vendor_dim, payment_dim, ratecode_dim
-
+--
 -- Version      Last Modified             Changes 
 -- 1.0          2025-07-15                Initial creation of the table
 */
