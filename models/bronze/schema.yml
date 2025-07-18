@@ -1,0 +1,13 @@
+sources:
+  - name: bronze
+    tables:
+      - name: ext_yellow_taxi_trips
+        description: External BigQuery table referencing raw Yellow Taxi trip data stored as Parquet files in Google Cloud Storage.
+      - name: ext_green_taxi_trips
+        description: External BigQuery table referencing raw Green Taxi trip data stored as Parquet files in Google Cloud Storage.
+      - name: ext_for_hire_vehicle_trips
+        description: External BigQuery table referencing raw For-Hire Vehicle (FHV) trip data stored as Parquet files in Google Cloud Storage.
+      - name: ext_high_volume_for_hire_vehicle_trips
+        description: External BigQuery table referencing raw High Volume For-Hire Vehicle (HVFHV) trip data stored as Parquet files in Google Cloud Storage.
+      - name: ext_taxi_zone_lookup
+        description: External BigQuery table referencing NYC taxi zone lookup data stored as Parquet files in Google Cloud Storage.
