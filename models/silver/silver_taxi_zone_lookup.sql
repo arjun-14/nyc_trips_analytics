@@ -5,6 +5,7 @@ Description: This table stores reference data mapping taxi zone Location IDs to 
 
 Version      Last Modified             Changes 
 1.0          2025-07-13                Initial creation of the table with basic fields and derived columns
+2.0          2025-07-19                Migrate to dbt
 */
 
 {{ config(

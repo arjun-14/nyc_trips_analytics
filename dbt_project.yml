@@ -25,3 +25,6 @@ models:
       +schema: silver
     gold:
       +schema: gold
+
+seeds:
+  +schema: seed_data
