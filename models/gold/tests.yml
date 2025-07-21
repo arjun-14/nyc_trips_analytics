@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: gold_trips_fact
+    columns:
+      - name: trip_id
+        tests:
+          - unique
+          - not_null
+      - name: vendor_id  
+        tests:
+          - relationships:
+              to: ref('gold_vendor_dim')
+              field: vendor_id
+      - name: pickup_location_id  
+        tests:
+          - relationships:
+              to: ref('gold_location_dim')
+              field: location_id
+      - name: dropoff_location_id  
+        tests:
+          - relationships:
+              to: ref('gold_location_dim')
+              field: location_id
+      - name: pickup_date_key  
+        tests:
+          - relationships:
+              to: ref('gold_date_dim')
+              field: date_key
+      - name: dropoff_date_key  
+        tests:
+          - relationships:
+              to: ref('gold_date_dim')
+              field: date_key
+      - name: payment_type_id  
+        tests:
+          - relationships:
+              to: ref('gold_payment_dim')
+              field: payment_type_id
+      - name: ratecode_id  
+        tests:
+          - relationships:
+              to: ref('gold_ratecode_dim')
+              field: ratecode_id
+      

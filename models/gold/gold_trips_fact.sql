@@ -11,6 +11,7 @@ Version      Last Modified             Changes
 1.0          2025-07-15                Initial creation of the table
 1.1          2025-07-15                Add partitioning and clustering keys
 2.0          2025-07-20                Migrate to dbt
+2.1          2025-07-21                Add filter on pickup timestamp
 */
 
 {{ config(
@@ -69,6 +70,7 @@ WHERE
     passenger_count_flag = 'VALID'
     AND total_amount_flag = 'VALID'
     AND trip_duration_seconds_flag = 'VALID'
+    AND CAST(FORMAT_DATE('%Y%m%d', tpep_pickup_datetime) AS INT64) BETWEEN 20240101 AND 20241231
 
 UNION ALL
 SELECT 
@@ -111,6 +113,7 @@ WHERE
     passenger_count_flag = 'VALID'
     AND total_amount_flag = 'VALID'
     AND trip_duration_seconds_flag = 'VALID'
+    AND CAST(FORMAT_DATE('%Y%m%d', lpep_pickup_datetime) AS INT64) BETWEEN 20240101 AND 20241231
 
 UNION ALL
 SELECT 
@@ -152,3 +155,4 @@ FROM
 WHERE
     base_passenger_fare_flag = 'VALID'
     AND trip_duration_seconds_flag = 'VALID'
+    AND CAST(FORMAT_DATE('%Y%m%d', pickup_datetime) AS INT64) BETWEEN 20240101 AND 20241231
