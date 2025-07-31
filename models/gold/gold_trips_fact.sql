@@ -12,6 +12,7 @@ Version      Last Modified             Changes
 1.1          2025-07-15                Add partitioning and clustering keys
 2.0          2025-07-20                Migrate to dbt
 2.1          2025-07-21                Add filter on pickup timestamp
+2.2          2025-07-21                Add columns platform_earnings & platform_share
 */
 
 {{ config(
@@ -62,6 +63,8 @@ SELECT
     tip_percentage,
     NULL AS driver_pay,
     NULL AS fare_per_mile,
+    NULL AS platform_earnings,
+    NULL AS platform_share,
     CURRENT_TIMESTAMP() AS insert_timestamp,
     CURRENT_TIMESTAMP() AS update_timestamp
 FROM
@@ -105,6 +108,8 @@ SELECT
     tip_percentage,
     NULL AS driver_pay,
     NULL AS fare_per_mile,
+    NULL AS platform_earnings,
+    NULL AS platform_share,
     CURRENT_TIMESTAMP() AS insert_timestamp,
     CURRENT_TIMESTAMP() AS update_timestamp
 FROM 
@@ -148,6 +153,8 @@ SELECT
     tip_percentage,
     driver_pay,
     fare_per_mile,
+    platform_earnings,
+    platform_share,
     CURRENT_TIMESTAMP() AS insert_timestamp,
     CURRENT_TIMESTAMP() AS update_timestamp 
 FROM 
