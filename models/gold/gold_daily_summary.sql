@@ -78,7 +78,6 @@ SELECT
     gross_fare_amount,
     gross_total_amount,
     gross_platform_earnings,
-    gross_platform_share,
     total_passengers,
     avg_total_distance,
     total_distance,
