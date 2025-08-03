@@ -19,6 +19,8 @@ SELECT
     location_id,
     borough,
     zone,
-    service_zone
+    service_zone,
+    CURRENT_TIMESTAMP() AS insert_timestamp,
+    CURRENT_TIMESTAMP() AS update_timestamp
 FROM
     {{ ref('silver_taxi_zone_lookup') }}
