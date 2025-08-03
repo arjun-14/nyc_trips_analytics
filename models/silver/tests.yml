@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: silver_yellow_taxi_trips
+    columns:
+      - name: trip_id
+        tests:
+          - unique
+          - not_null
+
+  - name: silver_green_taxi_trips
+    columns:
+      - name: trip_id
+        tests:
+          - unique
+          - not_null
+
+  - name: silver_for_hire_vehicle_trips
+    columns:
+      - name: trip_id
+        tests:
+          - unique
+          - not_null
+
+  - name: silver_high_volume_for_hire_vehicle_trips
+    columns:
+      - name: trip_id
+        tests:
+          - unique
+          - not_null

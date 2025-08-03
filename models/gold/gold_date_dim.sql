@@ -7,6 +7,7 @@ Description: This dimension table stores calendar date attributes for the year 2
 Version      Last Modified             Changes 
 1.0          2025-07-13                Initial creation of the table
 2.0          2025-07-19                Migrate to dbt
+2.1          2025-07-21                Extend date range to include Jan 1, 2025
 */
 
 {{ config(
@@ -33,7 +34,7 @@ SELECT
         ELSE FALSE 
     END AS is_weekend
 FROM 
-    UNNEST(GENERATE_DATE_ARRAY('2024-01-01', '2024-12-31', INTERVAL 1 DAY)) AS d
+    UNNEST(GENERATE_DATE_ARRAY('2024-01-01', '2025-01-01', INTERVAL 1 DAY)) AS d
 )
 SELECT 
     date_key,

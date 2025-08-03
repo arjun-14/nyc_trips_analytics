@@ -11,6 +11,8 @@ Version      Last Modified             Changes
 1.0          2025-07-15                Initial creation of the table
 1.1          2025-07-15                Add partitioning and clustering keys
 2.0          2025-07-20                Migrate to dbt
+2.1          2025-07-21                Add filter on pickup timestamp
+2.2          2025-07-21                Add columns platform_earnings & platform_share
 */
 
 {{ config(
@@ -61,6 +63,8 @@ SELECT
     tip_percentage,
     NULL AS driver_pay,
     NULL AS fare_per_mile,
+    NULL AS platform_earnings,
+    NULL AS platform_share,
     CURRENT_TIMESTAMP() AS insert_timestamp,
     CURRENT_TIMESTAMP() AS update_timestamp
 FROM
@@ -69,6 +73,7 @@ WHERE
     passenger_count_flag = 'VALID'
     AND total_amount_flag = 'VALID'
     AND trip_duration_seconds_flag = 'VALID'
+    AND CAST(FORMAT_DATE('%Y%m%d', tpep_pickup_datetime) AS INT64) BETWEEN 20240101 AND 20241231
 
 UNION ALL
 SELECT 
@@ -103,6 +108,8 @@ SELECT
     tip_percentage,
     NULL AS driver_pay,
     NULL AS fare_per_mile,
+    NULL AS platform_earnings,
+    NULL AS platform_share,
     CURRENT_TIMESTAMP() AS insert_timestamp,
     CURRENT_TIMESTAMP() AS update_timestamp
 FROM 
@@ -111,6 +118,7 @@ WHERE
     passenger_count_flag = 'VALID'
     AND total_amount_flag = 'VALID'
     AND trip_duration_seconds_flag = 'VALID'
+    AND CAST(FORMAT_DATE('%Y%m%d', lpep_pickup_datetime) AS INT64) BETWEEN 20240101 AND 20241231
 
 UNION ALL
 SELECT 
@@ -145,6 +153,8 @@ SELECT
     tip_percentage,
     driver_pay,
     fare_per_mile,
+    platform_earnings,
+    platform_share,
     CURRENT_TIMESTAMP() AS insert_timestamp,
     CURRENT_TIMESTAMP() AS update_timestamp 
 FROM 
@@ -152,3 +162,4 @@ FROM
 WHERE
     base_passenger_fare_flag = 'VALID'
     AND trip_duration_seconds_flag = 'VALID'
+    AND CAST(FORMAT_DATE('%Y%m%d', pickup_datetime) AS INT64) BETWEEN 20240101 AND 20241231

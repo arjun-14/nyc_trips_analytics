@@ -11,6 +11,7 @@ Version      Last Modified             Changes
 1.1          2025-07-14                Update the primary key to include trip type
 1.2          2025-07-15                Remove redundant column trip_duration_seconds
 2.0          2025-07-18                Migrate to dbt
+2.1          2025-07-21                Add columns to calculate platform earnings
 */
 
 {{ config(
@@ -55,7 +56,7 @@ SELECT
     wav_match_flag,
 
     --derived columns
-    base_passenger_fare + tolls + bcf + sales_tax + congestion_surcharge + airport_fee AS total_amount,
+    ROUND(base_passenger_fare + tolls + bcf + sales_tax + congestion_surcharge + airport_fee, 2) AS total_amount,
     CASE 
         WHEN trip_miles > 0 THEN ROUND(base_passenger_fare / trip_miles, 2)
         ELSE NULL
@@ -69,6 +70,11 @@ SELECT
         WHEN base_passenger_fare > 0 THEN ROUND(tips / base_passenger_fare * 100, 2)
         ELSE NULL
     END AS tip_percentage,
+    base_passenger_fare - driver_pay AS platform_earnings,
+    CASE 
+        WHEN base_passenger_fare <= 0 THEN NULL
+        ELSE ROUND(((base_passenger_fare - driver_pay) / base_passenger_fare) * 100, 2)
+    END AS platform_share,
 
     -- data quality flags
     CASE
@@ -118,6 +124,8 @@ SELECT
     time_of_day_bucket,
     pickup_day_of_week,
     tip_percentage,
+    platform_earnings,
+    platform_share,
     base_passenger_fare_flag,
     trip_duration_seconds_flag,
     insert_timestamp,
